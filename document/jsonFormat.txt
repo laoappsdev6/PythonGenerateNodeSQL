@@ -1,0 +1,210 @@
+{
+  "path": "D:\\project\\Test Project\\python", //ບ່ອນເກັບໂປຣເຈັກ
+  "project": "NodeTest", //ຊື່ໂປຣເຈັກ
+  "detail": {   //ລາຍລະອຽດຂອງໂປຣເຈັກ
+    "users": {  //ຕາຕະລາງ
+      "field": {    // ລາຍລະອຽດຂອງຕາຕະລາງ ແລະ property ສຳລັບສ້າງຟາຍຈັດການຂໍ້ມູຸນ
+        "id": "integer auto_increment primary key",
+        "name": "varchar(50) not null",
+        "username": "varchar(60) not null",
+        "password": "varchar(50) not null",
+        "phoneNumber": "varchar(15) not null",
+        "productId": "int(10) not null",
+        "remark": "TEXT null"
+      },
+      "function": { // ເປັນຟັງຊັ່ນໃນການຈັດການສ້າງຟາຍ
+        "manage": { // ເປັນການຈັດການຂໍູ້ມນ
+          "add": { // ຟັງຊັ່ນໃນການບັນທຶກຂໍ້ມູນ
+            "self": "insert",   // ບົ່ງບອກວ່າຟັ່ງຊັ່ນຂອງຕົວມັນເອງເປັນອິຫຍັງເຊັ່ນ: insert,update,delete
+            "option": { // ລາຍການເສີມຂອງຟັງຊັ່ນ
+              "isAllColumn": true,  // ທ່ານຕ້ອງການບັນທຶກທຸກໆ ຄໍລັ່ມ ຫຼື ບໍ່ ຄ່າແມ່ນ true,false
+              "validate": true,  // ທ່ານຕ້ອງການທີ່ຈະ ວາລິເດດ ຂໍ້ມູນ ຫຼືບໍ່ ຄ່າແມ່ນ true,false
+              "isAlready": true, // ທ່ານຕ້ອງການກວດສອບບໍ່ໃຫ້ຂໍ້ມູນຊ້ຳກັນ ຫຼື ບໍ່ ຄ່າແມ່ນ true,false
+              "alreadyExistKey": 1 // ເປັນ index ຂອງ property ຂອງຕາຕະລາງ
+            }
+          },
+          "myAdd": {
+            "self": "insert",
+            "option": {
+              "isAllColumn": false, // ທ່ານບໍ່ຕ້ອງການຈະບັນທຶກທັງໝົດຄໍລັມ ທ່ານຕ້ອງກຳນົດຄ່າຂອງ ຄໍລັ່ມ
+              "columnDetail": [ // ກົດນົດ index ຂອງ property ໃນການບັນທຶກ ສົ່ງຂໍ້ມູນໄດ້ຫຼາຍຕົວ ໃນຮູບແບບຂອງ array ເປັນຕົວເລກເທົ່ານັ້ນ
+                1,
+                2
+              ],
+              "validate": true,
+              "isAlready": false // ຖ້າທ່ານຕ້ອງການໃຫ້ຂໍ້ມູນທຸກຢ່າງຊຳ້ກັນໄດ້ ທ່ານບໍ່ຈຳເປັນຕ້ອງສົ່ງ index ໄປ
+            }
+          },
+          "updateUser": { ເປັນຊື່ຟັງຊັ່ນ
+            "self": "update", // ບົ່ງບອກວ່າເປັນການແກ້ໄຂຂໍ້ມູນ
+            "option": {
+              "isAllColumn": false,
+              "columnDetail": [
+                1
+              ],
+              "validate": true,
+              "isAlready": true,
+              "alreadyExistKey": 1,
+              "where": { // ຖ້າເປັນການແກ້ໄຂຂໍ້ມູນຕ້ອງໄດ້ສົ່ງເງື່ອນໄຂໄປ
+                "isEqual": [ // ນີ້ເປັນ index ຂອງ property ທີ່ທ່ານຕ້ອງການໃຫ້ມັນເທົ່າກັບ ຖ້າບໍ່ມີກໍສົ່ງ array ເປົ່າໄປ
+                  0
+                ],
+                "notEqual": []  // ນີ້ເປັນ index ຂອງ property ທີ່ທ່ານຕ້ອງການບໍ່ໃຫ້ມັນເທົ່າກັບ ຖ້າບໍ່ມີກໍສົ່ງ array ເປົ່າໄປ
+              }
+            }
+          },
+          "changePassword": {
+            "self": "update", // ບົ່ງບອກວ່າເປັນການແກ້ໄຂຂໍ້ມູນ
+            "option": {
+              "isAllColumn": false,
+              "columnDetail": [
+                3
+              ],
+              "validate": false,
+              "isAlready": false,
+              "where": {
+                "isEqual": [
+                  0
+                ],
+                "notEqual": [
+                ]
+              }
+            }
+          },
+          "delete": { // ຊື່ຟັງຊັ່ນ ສາມາດໃສ່ອິຫຍັງກໍໄດ້ ສຳຄັນແມ່ນ ຕ້ອງບົ່ງບອກວ່າຕົວເອງເປັນ ອິຫຍັງ
+            "self": "delete", // ບົ່ງບອກວ່າຕົນເອງເປັນການລົບຂໍ້ມູນ
+            "option": {
+              "validate": true,
+              "where": {
+                "isEqual": [
+                  0,
+                  2
+                ],
+                "notEqual": [
+                  3,
+                  1
+                ]
+              }
+            }
+          },
+          "deleteUser": {
+            "self": "delete",
+            "option": {
+              "validate": false,
+              "where": {
+                "isEqual": [
+                ],
+                "notEqual": [
+                  3,
+                  1
+                ]
+              }
+            }
+          }
+        },
+        "list": { // ເປັນຟັງຊັ່ນໃນການດຶງຂໍ້ມູນ
+          "listOne": { // ຊື່ຂອງຟັງຊັ່ນສາມາດຕັ້ງແບບໃດກໍໄດ້ ແຕ່ສຳຄັນຕ້ອງບົ່ງບອກວ່າໂຕເອງກຳລັງເຮັດຫຍັງ
+            "self": "listOne",  // ບົງບອກວ່າເປັນການດຶງຂໍ້ມູນອັນດຽວ
+            "option": { // ລາຍການເສີມຂອງຟັງຊັ່ນ
+              "isJoin": true, // ທ່ານຕ້ອງການ join ຂໍ້ມູນ ຫຼື ກັບຕາຕະລາງອື່ນ ຫຼື ບໍ່ ຖ້າບໍ່ຕ້ອງການ ແມ່ນບໍ່ສົ່ງ ລາຍລະອຽດໄປກໍໄດ້
+              "joinDetail": { // ລາຍລະອຽດຂອງການ ຈອຍ ຂໍ້ມູນກັບຕາຕະລາງອື່ນ
+                "product": { // ຊື່ ຕາຕະລາງທີ່ທ່ານຕ້ອງການ ຈອຍ ໄປຫາ
+                  "joinTo": "users", // ຕາຕະລາງທີ່ ຈອຍ ໄປຫາ product ແມ່ນຕາຕະລາງໃດ ຊີ້ກັບຄືນມາຫາເຈົ້າຂອງເອງ
+                  "foreignKey": 5 // index ຂອງຕາຕະລາງ ທີ່ຈອຍໄປຫາ product
+                },
+                "category": {
+                  "joinTo": "product",
+                  "foreignKey": 6
+                }
+              },
+              "where": { // ເງື່ອນໄຂໃນການເດືງຂໍ້ມູນ
+                "users": 0, // ຕາຕະລາງ ແລະ index ຂອງ property ທີເຈົ້າຕ້ອງການເອົາມາເປັນເງື່ອນໄຂ
+                "product": 0
+              } // ໝາຍເຫດ: ເຮົາສາມາດເອົາຕະຕະລາງມາເປັນເງື່ອນໄຂໄດ້ກໍຕໍ່່ເມື່ອຍ ເຮົາມີການ ຈອຍ ກັບຕາຕະລາງນັ້ນໆ
+            }
+          },
+          "listOne2": { // ຊື່ຟັງຊັ່ນ ສາມາດໃສ່ອິຫຍັງກໍໄດ້
+            "self": "listOne", // ຕ້ອງບົ່ງບອກວ່າຕົວເອງເປັນ ການດຶງຂໍູ້ມນ ແບບ ອັນດຽວ
+            "option": {
+              "isJoin": false, // ຖ້າທ່ານບໍ່ຕ້ອງການ ຈອຍ ທ່ານກໍບໍ່ຈຳເປັນຕ້ອງສົ່ງລາຍລະອຽດຂອງການຈອຍໄປ
+              "where": 0 // ຖ້າທ່ານບໍ່ຈອຍ ທ່ານກໍສາມາດຊີ້ໄປຫາ index ຂອງ property ຂອງຕົວເອງໄດ້ເລີຍ
+            }
+          },
+          "listAll": { // ຊື່ຟັງຊັ່ນ ສາມາດໃສ່ອິຫຍັງກໍໄດ້
+            "self": "listAll", // ບົ່ງບອກວ່າຕົວເອງເປັນການດຶງຂໍ້ມູນ ແບບ ດຶງທັງໝົດ
+            "option": {
+              "isJoin": true,
+              "joinDetail": {
+                "product": {
+                  "joinTo": "users",
+                  "foreignKey": 5
+                },
+                "category": {
+                  "joinTo": "product",
+                  "foreignKey": 6
+                }
+              },
+              "isWhere": true, // ໃນການດຶງຂໍ້ມູນທັງມົດນີ້ທ່ານສາມາດ ເລືອກ ໄດ້ວ່າ ຕ້ອງກ່ານໃສ່ເງື່ອນໄຂຫຼືບໍ່ ຖ້າບໍ່ສົ່ງກໍບໍ່ຈຳເປັນຕ້ອງສົ່ງ ເງື່ອນໄຂໄປ
+              "where": {
+                "users": 0,
+                "category": 0
+              }
+            }
+          },
+          "listAll22": { // ຊື່ຟັງຊັ່ນ ສາມາດໃສ່ອິຫຍັງກໍໄດ້
+            "self": "listAll", // ຕ້ອງບົ່ງບອກວ່າຕົວເອງເປັນ ການດຶງຂໍ້ມູນ ແບບ ທັງໝົດ
+            "option": {
+              "isJoin": false // ຖ້າທ່ານບໍ່ມີການ ຈອຍ ຕາຕະລາງ ກໍບໍ່ຈຳເປັນຕ້ອງໃສ່ເງື່ອນໄຂໃນການດຶງຂໍ້ມູນ ເພາະ ເປັນການດຶງຂໍ້ມູນຂຶ້ນມາທັງໝົດ
+            }
+          },
+          "listPage": { // ຊື່ຟັງຊັ່ນ ສາມາດໃສ່ອິຫຍັງກໍໄດ້
+            "self": "listPage", ບົ່ງບອກວ່າຕົວເອງເປັນການ ດຶງຂໍ້ມູນ ແບບ ເປັນໜ້າ
+            "option": {
+              "isJoin": true,
+              "joinDetail": {
+                "product": {
+                  "joinTo": "users",
+                  "foreignKey": 5
+                },
+                "category": {
+                  "joinTo": "product",
+                  "foreignKey": 6
+                }
+              },
+              "isWhere": true,
+              "where": {
+                "users": 0,
+                "category": 0
+              },
+              "searchKey": 2 // ສຳລັບການດຶງຂໍ້ມູນເປັນໜ້າ ທ່ານສາມາດສົ່ງ index ຂອງການ ຄົ້ນຫາໄດ້ ຖ້າບໍ່ຕ້ອງການຄົ້ນຫາໃຫ້ສົ່ງ -1 ແຕ່ຕ້ອງສົ່ງທຸກເທື່ອ ແລະ ສົ່ງໄດ້ຄ່າດຽວເປັນຕົວເລກ
+            }
+          },
+          "listPage22": {
+            "self": "listPage",
+            "option": {
+              "isJoin": false,
+              "isWhere": true,
+              "where": 5,
+              "searchKey": 3
+            }
+          },
+          "listPage33": {
+            "self": "listPage",
+            "option": {
+              "isJoin": false,
+              "isWhere": false,
+              "searchKey": -1
+            }
+          }
+        }
+      },
+      "setting": { // ການຕັ້ງຄ່າຂອງການ ສ້າງຟາຍ ແລະ ການສ້າງ ຖານຂໍ້ມູນ
+        "dbSync": "notExist", // 3 ຮູບແບບຂອງການສ້າງຕາຕະລາງ 1 notExist = ສ້າງຂຶ້ນຖ້າຍັງບໍ່ມີ, 2 alter = ເປັນການແກ້ໄຂຂໍມູນຂອງຕາຕະລາງ 3 replace ລົບຕາຕະລາງເກົ່າອອກແລ້ວສ້າງໃໝ່
+        "baseSync": "notExist", // ສຳລັບການສ້າງຟາຍຈະມີຢູ່ີ 2 ຮູບເແບບ ຄື: 1 replace ສ້າງທັບໂຕເກົ່າ, 2 notExist ເປັນການສ້າງຖ້າຫາຍັງບໍ່ມີ
+        "apiSync": "replace",
+        "controllerSync": "replace",
+        "modelSync": "replace"
+      }
+    }
+  }
+}

@@ -1,0 +1,358 @@
+{
+  "path": "D:\\project\\Test Project\\python",
+  "project": "NodeTest",
+  "detail": {
+    "users": {
+      "field": {
+        "id": "integer auto_increment primary key",
+        "name": "varchar(50) not null",
+        "username": "varchar(60) not null",
+        "password": "varchar(50) not null",
+        "phoneNumber": "varchar(15) not null",
+        "productId": "int(10) not null",
+        "remark": "TEXT null"
+      },
+      "function": {
+        "manage": {
+          "addUser": {
+            "self": "insert",
+            "option": {
+              "isAllColumn": true,
+              "validate": true,
+              "isAlready": true,
+              "alreadyExistKey": 2
+            }
+          },
+          "addUser2": {
+            "self": "insert",
+            "option": {
+              "isAllColumn": false,
+              "columnDetail": [
+                1,
+                2
+              ],
+              "validate": true,
+              "isAlready": false
+            }
+          },
+          "updateUser": {
+            "self": "update",
+            "option": {
+              "isAllColumn": true,
+              "validate": true,
+              "isAlready": true,
+              "alreadyExistKey": 1,
+              "where": {
+                "isEqual": [
+                  0
+                ],
+                "notEqual": []
+              }
+            }
+          },
+          "changePassword": {
+            "self": "update",
+            "option": {
+              "isAllColumn": false,
+              "columnDetail": [
+                3
+              ],
+              "validate": false,
+              "isAlready": false,
+              "where": {
+                "isEqual": [
+                  0
+                ],
+                "notEqual": [
+                ]
+              }
+            }
+          },
+          "delete": {
+            "self": "delete",
+            "option": {
+              "validate": true,
+              "where": {
+                "isEqual": [
+                  0,
+                  2
+                ],
+                "notEqual": [
+                  3,
+                  1
+                ]
+              }
+            }
+          },
+          "deleteUser": {
+            "self": "delete",
+            "option": {
+              "validate": false,
+              "where": {
+                "isEqual": [
+                  0
+                ],
+                "notEqual": [
+                ]
+              }
+            }
+          }
+        },
+        "list": {
+          "listOne": {
+            "self": "listOne",
+            "option": {
+              "isJoin": true,
+              "joinDetail": {
+                "product": {
+                  "joinTo": "users",
+                  "foreignKey": 5
+                },
+                "category": {
+                  "joinTo": "product",
+                  "foreignKey": 2
+                }
+              },
+              "where": {
+                "users": 0
+
+              }
+            }
+          },
+          "listOne2": {
+            "self": "listOne",
+            "option": {
+              "isJoin": false,
+              "where": 0
+            }
+          },
+          "listAll": {
+            "self": "listAll",
+            "option": {
+              "isJoin": true,
+              "joinDetail": {
+                "product": {
+                  "joinTo": "users",
+                  "foreignKey": 5
+                },
+                "category": {
+                  "joinTo": "product",
+                  "foreignKey": 6
+                }
+              },
+              "isWhere": true,
+              "where": {
+                "users": 0,
+                "category": 0
+              }
+            }
+          },
+          "listAll22": {
+            "self": "listAll",
+            "option": {
+              "isJoin": false
+            }
+          },
+          "listPage": {
+            "self": "listPage",
+            "option": {
+              "isJoin": true,
+              "joinDetail": {
+                "product": {
+                  "joinTo": "users",
+                  "foreignKey": 5
+                },
+                "category": {
+                  "joinTo": "product",
+                  "foreignKey": 2
+                }
+              },
+              "isWhere": false,
+              "where": {
+                "users": 0
+              },
+              "searchKey": 2
+            }
+          },
+          "listPage22": {
+            "self": "listPage",
+            "option": {
+              "isJoin": false,
+              "isWhere": false,
+              "searchKey": 3
+            }
+          },
+          "listPage33": {
+            "self": "listPage",
+            "option": {
+              "isJoin": false,
+              "isWhere": false,
+              "searchKey": -1
+            }
+          }
+        }
+      },
+      "setting": {
+        "dbSync": "notExist",
+        "baseSync": "replace",
+        "apiSync": "replace",
+        "controllerSync": "replace",
+        "modelSync": "replace"
+      }
+    },
+    "category": {
+      "field": {
+        "id": "integer auto_increment primary key",
+        "categoryName": "varchar(50) not null",
+        "remark": "varchar(60) not null"
+      },
+      "function": {
+        "manage": {
+          "addCategory": {
+            "self": "insert",
+            "option": {
+              "isAllColumn": true,
+              "validate": true,
+              "isAlready": false
+            }
+          },
+          "updateCategory": {
+            "self": "update",
+            "option": {
+              "isAllColumn": true,
+              "validate": true,
+              "isAlready": false,
+              "where": {
+                "isEqual": [
+                  0
+                ],
+                "notEqual": []
+              }
+            }
+          },
+          "deleteCategory": {
+            "self": "delete",
+            "option": {
+              "validate": true,
+              "where": {
+                "isEqual": [
+                  0
+                ],
+                "notEqual": []
+              }
+            }
+          }
+        },
+        "list": {
+          "listOneCategory": {
+            "self": "listOne",
+            "option": {
+              "isJoin": false,
+              "where": 0
+            }
+          },
+          "listAllCategory": {
+            "self": "listAll",
+            "option": {
+              "isJoin": false
+            }
+          },
+          "listPageCategory": {
+            "self": "listPage",
+            "option": {
+              "isJoin": false,
+              "isWhere": false,
+              "searchKey": 2
+            }
+          }
+        }
+      },
+      "setting": {
+        "dbSync": "notExist",
+        "baseSync": "replace",
+        "apiSync": "replace",
+        "controllerSync": "replace",
+        "modelSync": "replace"
+      }
+    },
+    "product": {
+      "field": {
+        "id": "integer auto_increment primary key",
+        "productName": "varchar(50) not null",
+        "categoryID": "varchar(60) not null",
+        "quantity": "varchar(60) not null",
+        "sellPrice": "int(10) not null",
+        "buyPrice": "varchar(60) not null",
+        "description": "varchar(60) not null"
+      },
+      "function": {
+        "manage": {
+          "addProduct": {
+            "self": "insert",
+            "option": {
+              "isAllColumn": true,
+              "validate": true,
+              "isAlready": false
+            }
+          },
+          "updateProduct": {
+            "self": "update",
+            "option": {
+              "isAllColumn": true,
+              "validate": true,
+              "isAlready": false,
+              "where": {
+                "isEqual": [
+                  0
+                ],
+                "notEqual": []
+              }
+            }
+          },
+          "deleteProduct": {
+            "self": "delete",
+            "option": {
+              "validate": true,
+              "where": {
+                "isEqual": [
+                  0
+                ],
+                "notEqual": []
+              }
+            }
+          }
+        },
+        "list": {
+          "listOneProduct": {
+            "self": "listOne",
+            "option": {
+              "isJoin": false,
+              "where": 0
+            }
+          },
+          "listAllProduct": {
+            "self": "listAll",
+            "option": {
+              "isJoin": false
+            }
+          },
+          "listPageProduct": {
+            "self": "listPage",
+            "option": {
+              "isJoin": false,
+              "isWhere": false,
+              "searchKey": 2
+            }
+          }
+        }
+      },
+      "setting": {
+        "dbSync": "notExist",
+        "baseSync": "replace",
+        "apiSync": "replace",
+        "controllerSync": "replace",
+        "modelSync": "replace"
+      }
+    }
+  }
+}
